@@ -16,6 +16,8 @@ app.use('/obras', obrasRoutes);
 app.use('/etapas', require('./routes/etapas'));
 app.use('/gastos', require('./routes/gastos'));
 app.use('/usuarios', require('./routes/usuarios'));
+app.use('/colaboradores', require('./routes/colaboradores'));
+app.use('/pagamentos', require('./routes/pagamentos'));
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

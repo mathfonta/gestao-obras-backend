@@ -55,3 +55,11 @@ exports.deletarObra = (req, res) => {
   });
 };
 
+exports.detalharObra = (req, res) => {
+  const { id } = req.params;
+  db.query('SELECT * FROM obras WHERE id = ?', [id], (err, results) => {
+    if (err) return res.status(500).json({ erro: 'Erro ao buscar obra' });
+    if (results.length === 0) return res.status(404).json({ erro: 'Obra não encontrada' });
+    res.json(results[0]);
+  });
+};

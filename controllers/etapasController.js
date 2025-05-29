@@ -1,5 +1,6 @@
 const db = require('../db');
 
+// Listar todos
 exports.listarEtapas = (req, res) => {
   db.query('SELECT * FROM etapas', (err, results) => {
     if (err) return res.status(500).json({ erro: 'Erro ao buscar etapas' });
@@ -7,6 +8,7 @@ exports.listarEtapas = (req, res) => {
   });
 };
 
+// Criar novo
 exports.criarEtapa = (req, res) => {
   const { nome, data_prevista, data_realizada, status, obra_id } = req.body;
   db.query(

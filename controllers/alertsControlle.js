@@ -5,7 +5,7 @@ exports.getAlertas = (req, res) => {
   db.query(query, (err, results) => {
     if (err) {
       console.error('Erro ao buscar alertas:', err);
-      return res.status(500).json({ erro: 'Erro ao buscar alertas' });
+      return res.status(500).json({ erro: 'Erro ao buscar alertas nivel 1' });
     }
     res.json(results);
   });
