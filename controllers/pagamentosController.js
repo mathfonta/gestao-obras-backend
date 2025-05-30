@@ -15,12 +15,17 @@ exports.criarPagamento = (req, res) => {
 };
 
 exports.listarPagamentos = (req, res) => {
-  const query = `SELECT pagamentos.*, obras.nome AS nome_obra, etapas.nome AS nome_etapa, colaboradores.nome AS nome_colaborador
-                 FROM pagamentos
-                 JOIN obras ON pagamentos.obra_id = obras.id
-                 JOIN etapas ON pagamentos.etapa_id = etapas.id
-                 JOIN colaboradores ON pagamentos.colaborador_id = colaboradores.id
-                 ORDER BY pagamentos.data_pagamento DESC`;
+  const query = `
+    SELECT p.id, p.valor, p.data_pagamento, p.descricao,
+      o.nome AS nome_obra,
+      e.nome AS nome_etapa,
+      c.nome AS nome_colaborador
+    FROM pagamentos p
+    JOIN obras o ON p.obra_id = o.id
+    JOIN etapas e ON p.etapa_id = e.id
+    JOIN colaboradores c ON p.colaborador_id = c.id
+    ORDER BY p.data_pagamento DESC
+  `;
 
   db.query(query, (err, results) => {
     if (err) {
